@@ -1,26 +1,42 @@
 from django.db import models
+from audit_log.models import AuthStampedModel
+from django_extensions.db.models import TimeStampedModel
 from django.contrib.auth.models import User
 
 # Create your models here.
-class equipment(models.Model):
-	
-	docs
+class site(TimeStampedModel,AuthStampedModel):
+	name = models.CharField(max_length=100)
+	reportingUsers = models.ManyToManyField(User)
+	def __str__(self):
+		return self.name
 
-	tring for equipment"models.Modelf __init__(self, arg)
-
-	:
-		super(equip
-			t,models.Model.__
-		t__()
-		self.arg = arg
-
-class site(models.Model):
+class department(TimeStampedModel,AuthStampedModel):
 	name = models.CharField(max_length=100)
 	reportingManager = models.ForeignKey(User)
-	docstring for site"models.Modelf __init__(self, arg):
-		supename = models.CharField(max_length=100)
-		reportingManager = models.ForeignKey(r(site,
-		name = models.CharField(max_length=100)
-		reportingManager = models.ForeignKey(	els.Model.__init__
-				self.arg = arg
+	sites = models.ManyToManyField(site)
+	def __str__(self):
+		return self.name
+
+class equipment(TimeStampedModel,AuthStampedModel):
+	name = models.CharField(max_length=100)
+	code = models.IntegerField
+	department = models.ForeignKey(department)
+	site = models.ForeignKey(site)
+	lastMaintenanceDate = models.DateField
+	#TODO lastMaintenanceJob will be linked to MaintenanceJob App in
+	#Future for now I will just set it to an integer field, will 
+	#change later
+	lastMaintenanceJob = models.IntegerField
+	nextMaintenanceDate = models.DateField
+	#TODO nextMaintenanceJob as with above will be linked to foreign
+	#key when ready
+	nextMaintenanceJob = models.IntegerField
+	#TODO as with above two the maintenance schedule functionality will
+	#be added in the second sprint cycle
+	maintenanceSchedule = models.IntegerField
+	intervalType = models.CharField(max_length=100)
+	active = models.BooleanField
+	def __str__(self):
+		return self.name
+		
 		
