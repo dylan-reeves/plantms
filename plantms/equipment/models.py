@@ -22,18 +22,18 @@ class equipment(TimeStampedModel,AuthStampedModel):
 	code = models.IntegerField
 	department = models.ForeignKey(department)
 	site = models.ForeignKey(site)
-	lastMaintenanceDate = models.DateField
+	lastMaintenanceDate = models.DateTimeField('Last Maintenance Conducted')
 	#TODO lastMaintenanceJob will be linked to MaintenanceJob App in
 	#Future for now I will just set it to an integer field, will 
 	#change later
-	lastMaintenanceJob = models.IntegerField
-	nextMaintenanceDate = models.DateField
+	lastMaintenanceJob = models.IntegerField(default=0)
+	nextMaintenanceDate = models.DateTimeField('Next Maintenance Job')
 	#TODO nextMaintenanceJob as with above will be linked to foreign
 	#key when ready
-	nextMaintenanceJob = models.IntegerField
+	nextMaintenanceJob = models.IntegerField(default=0)
 	#TODO as with above two the maintenance schedule functionality will
 	#be added in the second sprint cycle
-	maintenanceSchedule = models.IntegerField
+	maintenanceSchedule = models.IntegerField(default=0)
 	intervalType = models.CharField(max_length=100)
 	active = models.BooleanField
 	def __str__(self):
