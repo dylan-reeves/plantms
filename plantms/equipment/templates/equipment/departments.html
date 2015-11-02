@@ -1,0 +1,17 @@
+{% load compressed %}
+<head>
+	{% compressed_css 'bootstrap' %}
+</head>
+<body>
+	{% compressed_js 'bootstrap' %}
+	{% if department_list %}
+	<ul>
+		{% for dept in department_list %}
+			<li><a href="/departments/{{ dept.id }}/">{{ dept.name }}</a></li>
+		{% endfor %}
+	</ul>
+{% else %}
+	<p>No Departments Available</p>
+{% endif %}
+
+</body>
