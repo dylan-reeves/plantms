@@ -1,9 +1,7 @@
-{% load compressed %}
 <head>
-	{% stylesheet 'bootstrap' %}
+	
 </head>
 <body>
-	{% javascript 'bootstrap' %}
 	{% if department_list %}
 	<ul>
 		{% for dept in department_list %}
@@ -11,7 +9,7 @@
 		{% endfor %}
 	</ul>
 {% else %}
-	<p>No Departments Available</p>
+	<p>No Departments Available <a href="/departments/create/">Create</a></p>
 {% endif %}
 
 </body>

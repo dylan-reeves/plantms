@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import department
+from .models import department, site, equipment
 from django.template import RequestContext, loader
 
 
@@ -14,7 +14,17 @@ def  departments(request):
 	return HttpResponse(template.render(context))
 
 def sites(request):
-	return HttpResponse("Sites Page")
+	site_list = site.objects.all()
+	template = loader.get_template('equipment/sites.html')
+	context = RequestContext(request, {
+		'site_list': site_list,
+		})
+	return HttpResponse(template.render(context))
 
 def equipment(request):
-	return HttpResponse("Equipment Page")
+	equipment_list = equipment.objects.all()
+	template = loader.get_template('equipment/equipment.html')
+	context = RequestContext(request, {
+		'equipment_list': equipment_list,
+		})
+	return HttpResponse(template.render(context))

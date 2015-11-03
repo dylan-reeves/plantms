@@ -1,0 +1,14 @@
+<head>
+	
+</head>
+<body>
+	{% if equipment_list %}
+    <ul>
+    	{% for equipment in equipment_list %}
+    	<li><a href="/equipment/{{ equipment.id }}/">{{ equipment.name }}</a></li>
+    	{% endfor %}
+    </ul>
+    {% else %}
+    <p>No Equipment <a href="/equipment/create/">Create</a></p>
+	{% endif %}
+</body>
