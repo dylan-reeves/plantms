@@ -9,3 +9,6 @@ The system I will be building will be able to create various technical departmen
 
 Technologies
 I will be developing the system in Django, using a MySQL databse backend.
+
+Notes
+- Need to install npm packagemanager on server and install Lesssc and set environ variable to binary
