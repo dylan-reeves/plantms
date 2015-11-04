@@ -1,7 +1,5 @@
-<head>
-	
-</head>
-<body>
+{% extends 'equipment/base.html' %}
+{% block content %}
 	{% if site_list %}
     <ul>
     	{% for site in site_list %}
@@ -11,4 +9,4 @@
     {% else %}
     <p>No Sites <a href="/sites/create/">Create</a></p>
 	{% endif %}
-</body>
+{% endblock %}

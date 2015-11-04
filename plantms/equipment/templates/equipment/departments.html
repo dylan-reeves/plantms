@@ -1,15 +1,35 @@
-<head>
+{% extends 'equipment/base.html' %}
+{% block content %}
 	
-</head>
-<body>
 	{% if department_list %}
-	<ul>
+	<table class='table table-hover'>
+		<tr>
+			<td>Department Name</td>
+			<td>Sites</td>
+			<td>Edit</td>
+			<td>Delete</td>
+		</tr>
+		
 		{% for dept in department_list %}
-			<li><a href="/departments/{{ dept.id }}/">{{ dept.name }}</a></li>
+		<tr>
+			<td><a href="/departments/{{ dept.id }}/">{{ dept.name }}</a></td>
+			<td>
+				<ul>
+				{% for site in dept.sites.all %}
+					<li>{{ site.name }}</li>
+				{% endfor %}
+				</ul>	
+			</td>
+			<td><a href="/departments/edit/{{ dept.id }}" class='btn btn-primary' role="button">Edit</a></td>
+			<td><a href="/departments/delete/{{ dept.id }}" class='btn btn-primary' role="button">Delete</a></td>
+		</tr>
 		{% endfor %}
-	</ul>
+		
+	</table>
+
 {% else %}
 	<p>No Departments Available <a href="/departments/create/">Create</a></p>
 {% endif %}
 
-</body>
+{% endblock %}
+

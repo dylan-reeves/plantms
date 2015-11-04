@@ -19,7 +19,9 @@ from equipment import views as equip
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^departments/(?P<department_id>[0-9]+)/$', equip.departmentdetail, name='departmentdetail'),
     url(r'^departments/', equip.departments, name='departments'),
     url(r'^sites/', equip.sites, name='sites'),
     url(r'^equipment/', equip.equipment, name='equipment'),
+    url(r'^$', equip.index, name='index'),
 ]
