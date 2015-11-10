@@ -1,0 +1,8 @@
+Django==1.8.5
+django-appconf==1.0.1
+django-audit-log==0.7.0
+django-crispy-forms==1.5.2
+django-extensions==1.5.7
+futures==3.0.3
+six==1.10.0
+wheel==0.24.0
