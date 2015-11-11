@@ -15,11 +15,8 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-#my_app_less = os.path.join(BASE_DIR, 'plantms', 'static', 'less')
-local_path = lambda path: os.path.join(os.path.dirname(__file__),path)
 
-import twitter_bootstrap
-bootstrap_less = os.path.join(os.path.dirname(twitter_bootstrap.__file__), 'static', 'twitter_bootstrap', 'less')
+#local_path = lambda path: os.path.join(os.path.dirname(__file__),path)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -42,10 +39,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'twitter_bootstrap',
     'equipment',
-    'pipeline',
-    #'compressor',
+    'crispy_forms',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -78,6 +73,8 @@ TEMPLATES = [
     },
 ]
 
+
+
 WSGI_APPLICATION = 'plantms.wsgi.application'
 
 
@@ -108,51 +105,16 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
+STATICFILES_DIRS=(
+    os.path.join(BASE_DIR,"plantms","static_files"),
+)
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 STATIC_URL = '/static/'
-STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'pipeline.finders.PipelineFinder',
-    #'django.finders.CompressorFinder',
+    
     )
-
-PIPELINE_CSS = {
-    'bootstrap': {
-        'source_filenames': (
-                'twitter_bootstrap/less/bootstrap.less',
-            ),
-        'output_filename': 'css/b.css',
-        'extra_context': {
-            'media': 'screen,projection',
-        },
-    },
-}
-
-PIPELINE_JS = {
-    'bootstrap': {
-        'source_filenames': (
-          'twitter_bootstrap/js/transition.js',
-          'twitter_bootstrap/js/modal.js',
-          'twitter_bootstrap/js/dropdown.js',
-          'twitter_bootstrap/js/scrollspy.js',
-          'twitter_bootstrap/js/tab.js',
-          'twitter_bootstrap/js/tooltip.js',
-          'twitter_bootstrap/js/popover.js',
-          'twitter_bootstrap/js/alert.js',
-          'twitter_bootstrap/js/button.js',
-          'twitter_bootstrap/js/collapse.js',
-          'twitter_bootstrap/js/carousel.js',
-          'twitter_bootstrap/js/affix.js',
-            ),
-        'output_filename': 'js/b.js',
-    },
-}
-PIPELINE_COMPILERS = (
-    'pipeline.compilers.less.LessCompiler',
-    )
-PIPELINE_LESS_BINARY = local_path('bin/lessc')
-PIPELINE_LESS_ARGUMENTS = u'--include-path={}'.format(bootstrap_less)
-
-STATIC_ROOT = os.path.join(BASE_DIR,'plantms', 'static_final')
+CRISPY_TEMPLATE_PACK='bootstrap3'
+STATIC_ROOT = os.path.join(BASE_DIR,'plantms', 'static')

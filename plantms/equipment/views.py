@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import department, site, equipment
 from django.template import RequestContext, loader
+from .forms import departmentForm
 
 
 # Create your views here.
@@ -30,3 +31,14 @@ def departmentdetail(request, department_id):
 				'site_list': site_list,
 	}
 	return render(request, 'equipment/departmentdetails.html', context)
+
+def departments_create(request):
+	if request.method == 'POST':
+		form = departmentForm(request.POST)
+		if form.is_valid():
+			form.save()
+			return redirect(index)
+	else:
+		form = departmentForm()
+		return render(request, 'equipment/department_create.html', {'form': form})
+	

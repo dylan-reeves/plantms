@@ -1,14 +1,14 @@
 {% extends 'equipment/base.html' %}
 {% block content %}
-	
+	<a href="/departments/create/" class='btn btn-danger' role="button">Create</a>
 	{% if department_list %}
 	<table class='table table-hover'>
-		<tr>
-			<td>Department Name</td>
-			<td>Sites</td>
-			<td>Edit</td>
-			<td>Delete</td>
-		</tr>
+		<thead>
+			<th>Department Name</th>
+			<th>Sites</th>
+			<th>Edit</th>
+			<th>Delete</th>
+		</thead>
 		
 		{% for dept in department_list %}
 		<tr>
